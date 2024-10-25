@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-// import Logo from "../public/images/olaiya.jpg"; 
-// import Olaiya from "../public/images/download.jpg";
-// import image from "../public/images/images.jpg";
+import Logo from "../public/images/olaiya.jpg"; 
+import Olaiya from "../public/images/download.jpg";
+import image from "../public/images/images.jpg";
 
 const galleryCategories = {
   pastors: Array(30).fill(Olaiya),

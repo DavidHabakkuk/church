@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 const MessageDownload = () => {
+  // aray that of the message 
   const messages = [
     { id: 1, title: 'Sunday Message', date: '19th October 2024', teacher: 'John Doe' },
     { id: 2, title: 'Wednesday Bible Study', date: '17th October 2024', teacher: 'Jane Smith' },
@@ -39,8 +40,8 @@ const MessageDownload = () => {
             <div className="w-full mb-4">
               <video
                 controls
-                className="w-full h-40 rounded-lg" // Increased height for bigger video display
-                src={`/videos/message${message.id}.mp4`} // Replace with actual video URL for each message
+                className="w-full h-40 rounded-lg" 
+                src={`/videos/message${message.id}.mp4`}
               />
             </div>
 

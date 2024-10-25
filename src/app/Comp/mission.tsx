@@ -2,16 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Olaiya from "../public/Images/olaiya.jpg"
 
-// Use relative path for images in the `public` folder
 const MissionPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Trigger the transition after the component mounts
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 100); // Delay to ensure smooth transition
+    }, 100); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -27,7 +26,7 @@ const MissionPage: React.FC = () => {
           }`}
         >
           <Image
-            src="/images/olaiya.jpg"  // Use relative path here
+            src={Olaiya} 
             alt="Mission Image"
             fill
             style={{ objectFit: "cover" }}

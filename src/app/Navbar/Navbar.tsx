@@ -99,8 +99,8 @@ const Navbar = () => {
                 </button>
                 {isOpen && (
                   <div className="absolute mt-2 w-40 bg-white shadow-lg rounded-md z-50">
-                    <Link href="/class1" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Family Class</Link>
-                    <Link href="/class2" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Responsibility Class</Link>
+                    <Link href="/Family" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Family Class</Link>
+                    <Link href="/Responsibility" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Responsibility Class</Link>
                     <Link href="/class3" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Maturity Class</Link>
                     <Link href="/Bible" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Bible study</Link>
                   </div>
@@ -147,8 +147,8 @@ const Navbar = () => {
               </button>
               {isMobileDropdownOpen && (
                 <div className="mt-2 bg-white shadow-lg rounded-md z-50">
-                  <Link href="/class1" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Family Class</Link>
-                  <Link href="/class2" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Responsibility Class</Link>
+                  <Link href="/Family" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Family Class</Link>
+                  <Link href="/Responsibility" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Responsibility Class</Link>
                   <Link href="/class3" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Maturity Class</Link>
                   <Link href="/Bible" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Bible study</Link>
                 </div>
