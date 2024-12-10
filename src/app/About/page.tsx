@@ -18,7 +18,7 @@ const About = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.innerHeight / 1.2; // Change this value to control when the sections appear
+      const offset = window.innerHeight / 1.2;
       sectionsRef.current.forEach((section) => {
         const rect = section.getBoundingClientRect();
         if (rect.top < offset) {
@@ -41,7 +41,7 @@ const About = () => {
     <div>
       <section
         ref={addToRefs}
-        className="bg-white flex flex-col items-center justify-center py-16 bg-gray-100 opacity-0 transition-opacity duration-700 visible"
+        className="bg-white flex flex-col items-center justify-center py-16 opacity-0 transition-opacity duration-700 visible"
       >
         <h2 className="text-4xl font-bold mb-6 text-center text-gray-800">About Us</h2>
         <p className="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">

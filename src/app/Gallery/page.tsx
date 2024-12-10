@@ -1,76 +1,138 @@
 "use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Logo from "../public/images/olaiya.jpg"; 
-import Olaiya from "../public/images/download.jpg";
-import image from "../public/images/images.jpg";
+import React, { useState } from "react";
 
-const galleryCategories = {
-  pastors: Array(30).fill(Olaiya),
-  youth: Array(30).fill(Logo),
-  events: Array(25).fill(image),
+const images = {
+  All: [
+    "/images/music.jpg",
+    "/images/pja.jpg",
+    "/images/choir.jpg",
+    "/images/one.jpg",
+    "/images/two.jpg",
+    "/images/three.jpg",
+    "/images/four.jpg",
+    "/images/five.jpg",
+    "/images/code.jpeg",
+    "/images/coder.jpeg",
+    "/images/download.jpeg",
+    "/images/cop.jpeg",
+    "/images/sophie.jpg",
+    "/images/bayo.jpg",
+    "/images/kemi.jpg",
+    "/images/a.jpg",
+    "/images/b.jpg",
+    "/images/c.jpg",
+    "/images/d.jpg",
+    "/images/e.jpg",
+    "/images/f.jpg",
+    "/images/i.jpg",
+    "/images/j.jpg",
+    "/images/k.jpg",
+    "/images/l.jpg",
+    "/images/m.jpg",
+    "/images/n.jpg",
+    "/images/o.jpg",
+    "/images/p.jpg",
+    "/images/q.jpg",
+    "/images/r.jpg",
+    "/images/s.jpg",
+    "/images/t.jpg",
+    "/images/u.jpg",
+    "/images/v.jpg",
+    "/images/w.jpg",
+    "/images/x.jpg",
+    "/images/y.jpg",
+    "/images/z.jpg",
+    "/images/ab.jpg",
+    "/images/bc.jpg",
+    "/images/cd.jpg",
+    "/images/bc.jpg",
+    "/images/de.jpg",
+    "/images/ef.jpg",
+    "/images/fg.jpg",
+    "/images/xw.jpg",
+    "/images/wy.jpg",
+    "/images/vx.jpg",
+    "/images/tv.jpg",
+    "/images/z.jpg",
+    "/images/y.jpg",
+    "/images/op.jpg",
+    "/images/ab.jpg",
+
+  ],
+  Pastor: ["/images/pja.jpg", "/images/music.jpg"],
+  Choir: ["/images/choir.jpg", "/images/xw.jpg",],
+  Minister: ["/images/music.jpg", "/images/music.jpg"],
+  Media: [
+    "/images/one.jpg",
+    "/images/two.jpg",
+    "/images/three.jpg",
+    "/images/four.jpg",
+    "/images/five.jpg",
+  ],
+  Usher: [
+    "/images/code.jpeg",
+    "/images/coder.jpeg",
+    "/images/download.jpeg",
+    "/images/cop.jpeg",
+  ],
+  Youth: ["/images/sophie.jpg", "/images/bayo.jpg", "/images/kemi.jpg"],
+  Children: ["/images/e.jpg","/images/f.jpg",],
 };
 
 const Gallery = () => {
-  const [currentCategory, setCurrentCategory] = useState('all');
+  const [category, setCategory] = useState("All");
+  const displayedImages =
+    category === "All" ? Object.values(images).flat() : images[category];
 
-  const getImagesForCategory = (category) => {
-    if (category === 'all') {
-      return Object.values(galleryCategories).flat();
-    }
-    return galleryCategories[category] || [];
-  };
+  const categories = Object.keys(images);
 
   return (
-    <section className="min-h-screen bg-gray-100 pt-32 overflow-hidden"> 
-      <div className="container mx-auto h-full overflow-y-auto pb-20"> 
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+   
+    
        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
-          {getImagesForCategory(currentCategory).map((imageSrc, index) => (
-            <div
-              key={index}
-              className="relative h-60 w-full overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <Image
-                src={imageSrc}
-                alt={`Gallery image ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className="transition-transform duration-300 ease-in-out"
-              />
-            </div>
-          ))}
-        </div>
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
+          {displayedImages.length > 0 ? (
+            displayedImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <img
+                  src={image}
+                  alt={`Gallery ${category}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-600 col-span-full">
+              No images available in this category.
+            </p>
+          )}
+       
+      </div>
 
-        <div className="fixed bottom-4 left-0 w-full flex justify-center space-x-4 z-10"> 
-          <button
-            onClick={() => setCurrentCategory('all')}
-            className={`py-2 px-4 rounded-full ${
-              currentCategory === 'all'
-                ? 'bg-blue-500 text-white'
-                : 'bg-white text-blue-500 border border-blue-500'
-            }`}
-          >
-            All
-          </button>
-
-          {Object.keys(galleryCategories).map((category) => (
+      
+      <div className="fixed bottom-0 left-0 w-full bg-white border-t-4 border-blue-500 shadow-md">
+        <div className="flex justify-center space-x-4 py-3">
+          {categories.map((cat) => (
             <button
-              key={category}
-              onClick={() => setCurrentCategory(category)}
-              className={`py-2 px-4 rounded-full ${
-                currentCategory === category
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white text-blue-500 border border-blue-500'
+              key={cat}
+              className={`px-4 py-2 rounded-full text-white font-medium transition-all duration-300 ${
+                category === cat
+                  ? "bg-green-600 hover:bg-green-700"
+                  : "bg-green-600 hover:bg-green-700"
               }`}
+              onClick={() => setCategory(cat)}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {cat}
             </button>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

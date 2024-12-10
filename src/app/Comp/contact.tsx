@@ -4,15 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Trigger visibility after the component mounts
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 100); // Adjust the delay as needed for the effect
+    }, 100); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -23,32 +24,32 @@ const Contact = () => {
       <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-8">
         <div className="text-center">
           <FontAwesomeIcon icon={faPhone} className="text-green-500 text-3xl mb-2" />
-          <p className="text-white">+123 456 7890</p>
+          <p className="text-white">+234817699866</p > <p className="text-white">2348033000261</p>
         </div>
 
         <div className="text-center">
           <FontAwesomeIcon icon={faEnvelope} className="text-green-500 text-3xl mb-2" />
-          <p className="text-white">lffAmbassador'sassembly@gmail.com</p>
+          <p className="text-white">lffambassadorsassembly@gmail.com</p>
         </div>
 
         <div className="text-center">
           <FontAwesomeIcon icon={faMapMarkerAlt} className="text-green-500 text-3xl mb-2" />
-          <p className="text-white">7, fashe street</p>
+<p className="text-white">7, Fashe Street, by Omole Estate phase 2, Extension gate Isheri-Olowoora. lagos state, Nigeria. </p>
         </div>
 
         <div className="flex space-x-6">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <Link href="https://web.facebook.com/profile.php?id=61554659567321" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faFacebook} className="text-2xl text-blue-600 hover:text-blue-800" />
-          </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          </Link>
+          <Link href="https://www.instagram.com/theambassadorsassembly/?next=%2Faccounts%2Flogout%2F" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faInstagram} className="text-2xl text-pink-600 hover:text-pink-800" />
-          </a>
-          <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+          </Link>
+          <Link href="https://chat.whatsapp.com/BIMZVEK4QKXA239FSxG3yb " target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faWhatsapp} className="text-2xl text-green-500 hover:text-green-700" />
-          </a>
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+          </Link>
+          <Link href="https://call.whatsapp.com/video/dfHLj68vCEtRMzpq2cRwOa" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faYoutube} className="text-2xl text-red-600 hover:text-red-800" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

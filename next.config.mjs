@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: [], // Add domains here if images are from external sources
-      },
+  images: {
+    domains: ["via.placeholder.com"], // Allow this external image source
+  },
 };
 
 export default nextConfig;

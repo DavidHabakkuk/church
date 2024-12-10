@@ -1,66 +1,85 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-// import flyer1 from '../public/images/flyer1.jpg';  // Replace with your flyer image
-
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const events = [
   {
-    id: 1,
+    id: 4321,
+    title: "Christmas Carol",
+    date: "December 15, 2024",
+    description:
+      "An evening of joyful carols, worship, and celebration of Christ's birth.",
+    flyer: "/images/christ.jpg",
+  },
+  {
+    id: 23456,
+    title: "GSA Meeting",
+    date: "December 10, 2024",
+    description: "A gathering for spiritual growth and community worship.",
+    flyer: "/images/music.jpg",
+  },
+  {
+    id: 123,
     title: "Youth Empowerment Conference",
     date: "December 10, 2024",
-    description: "A day of inspiring talks, worship, and fellowship for the youth.",
-    // flyer: flyer1,
+    description:
+      "A conference designed to inspire and empower the next generation of leaders.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 2,
     title: "Christmas Eve Service",
     date: "December 24, 2024",
-    description: "Join us as we celebrate the birth of our Lord Jesus Christ.",
-    // flyer: flyer2,
+    description:
+      "Join us for a special service as we celebrate the birth of Jesus Christ.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 3,
     title: "New Year's Prayer Vigil",
     date: "December 31, 2024",
-    description: "Pray with us as we usher in the new year, seeking God’s blessings.",
-    // flyer: flyer3,
+    description:
+      "Start the new year with powerful prayers and divine blessings.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 4,
     title: "Easter Celebration Service",
     date: "April 5, 2025",
-    description: "Come together to celebrate the resurrection of Christ.",
-    // flyer: flyer4,
+    description: "Celebrate the resurrection of Jesus Christ with us.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 5,
     title: "Community Outreach",
     date: "June 10, 2025",
-    description: "Serving our community with love and compassion.",
-    // flyer: flyer5,
+    description:
+      "Reach out and serve the community with love, care, and compassion.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 6,
     title: "Family Fun Day",
     date: "July 22, 2025",
-    description: "A fun-filled day for the entire family with games, food, and fellowship.",
-    // flyer: flyer6,
+    description:
+      "A fun-filled day for families with games, food, and fellowship.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 7,
     title: "Thanksgiving Service",
-    date: "November 25, 2025",
-    description: "Join us for a special thanksgiving service.",
-    // flyer: flyer7,
+    date: "Every First Sunday of the Month",
+    description:
+      "Join us every first Sunday to give thanks and praise to God for His blessings.",
+    flyer: "/images/music.jpg",
   },
   {
     id: 8,
     title: "Church Anniversary",
     date: "October 14, 2025",
-    description: "Celebrating the journey and growth of our church.",
-    // flyer: flyer8,
+    description: "Celebrate the journey and growth of our church community.",
+    flyer: "/images/music.jpg",
   },
 ];
 
@@ -70,11 +89,7 @@ const EventPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      if (scrollPosition > 100) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(scrollPosition > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -87,7 +102,7 @@ const EventPage = () => {
         Upcoming Events
       </h2>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
         {events.map((event, index) => (
           <div
             key={event.id}
@@ -96,18 +111,20 @@ const EventPage = () => {
               delay-${index * 200}`}
           >
             {/* Event Flyer */}
-            <div className="mb-4">
+            <div className="relative w-full h-48 mb-4">
               <Image
                 src={event.flyer}
                 alt={event.title}
-                width={300}
-                height={200}
-                className="rounded-lg w-full object-cover"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
               />
             </div>
 
             {/* Event Title */}
-            <h3 className="text-2xl font-semibold text-gray-800 mb-2">{event.title}</h3>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+              {event.title}
+            </h3>
 
             {/* Event Date */}
             <p className="text-gray-600 mb-2">

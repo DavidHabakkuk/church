@@ -3,11 +3,13 @@
 import Image from 'next/image';
 
 const departments = [
-  { id: 1, name: "Music Ministry", description: "Worship through music.", image:"/public/images/music.jpg" },
-  { id: 2, name: "Children's Ministry", description: "Teaching children about faith.", image: "/public/images/music.jpg" },
-  { id: 3, name: "Youth Ministry", description: "Empowering the next generation.", image: "/public/images/music.jpg" },
-  { id: 4, name: "Ushering Department", description: "Welcoming members and guests.", image: "/public/images/music.jpg" },
-  { id: 5, name: "Prayer Ministry", description: "Dedicated to intercession.", image: "/public/images/music.jpg" },
+  { id: 1, name: "Music Ministry", description: "Worship through music.", image:"/Images/choir.jpg" },
+  { id: 2, name: "Children's Ministry", description: "Teaching children about faith.", image: "/Images/music.jpg" },
+  { id: 3, name: "Youth Ministry", description: "Empowering the next generation.", image: "/Images/music.jpg" },
+  { id: 4, name: "Ushering Department", description: "Welcoming members and guests.", image: "/Images/music.jpg" },
+  { id: 5, name: "Prayer Ministry", description: "Dedicated to intercession.", image: "/Images/music.jpg" },
+  { id: 5, name: "Media", description: "Dedicated to intercession.", image: "/Images/nice.jpg" },
+
 ];
 
 const DepartmentsPage = () => {
@@ -24,7 +26,6 @@ const DepartmentsPage = () => {
             className={`bg-white rounded-lg shadow-lg p-6 text-center transform transition duration-300 
               hover:scale-105 hover:shadow-xl opacity-0 transition-opacity duration-700 delay-${index * 100} animate-fadeIn`}
           >
-            {/* Image for each department */}
             <div className="mb-4">
               <Image
                 src={department.image}
