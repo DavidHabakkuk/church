@@ -4,117 +4,72 @@ import React, { useState } from "react";
 
 const images = {
   All: [
-    "/images/music.jpg",
-    "/images/pja.jpg",
-    "/images/choir.jpg",
-    "/images/one.jpg",
-    "/images/two.jpg",
-    "/images/three.jpg",
-    "/images/four.jpg",
-    "/images/five.jpg",
-    "/images/code.jpeg",
-    "/images/coder.jpeg",
-    "/images/download.jpeg",
-    "/images/cop.jpeg",
-    "/images/sophie.jpg",
-    "/images/bayo.jpg",
-    "/images/kemi.jpg",
-    "/images/a.jpg",
-    "/images/b.jpg",
-    "/images/c.jpg",
-    "/images/d.jpg",
-    "/images/e.jpg",
-    "/images/f.jpg",
-    "/images/i.jpg",
-    "/images/j.jpg",
-    "/images/k.jpg",
-    "/images/l.jpg",
-    "/images/m.jpg",
-    "/images/n.jpg",
-    "/images/o.jpg",
-    "/images/p.jpg",
-    "/images/q.jpg",
-    "/images/r.jpg",
-    "/images/s.jpg",
-    "/images/t.jpg",
-    "/images/u.jpg",
-    "/images/v.jpg",
-    "/images/w.jpg",
-    "/images/x.jpg",
-    "/images/y.jpg",
-    "/images/z.jpg",
-    "/images/ab.jpg",
-    "/images/bc.jpg",
-    "/images/cd.jpg",
-    "/images/bc.jpg",
-    "/images/de.jpg",
-    "/images/ef.jpg",
-    "/images/fg.jpg",
-    "/images/xw.jpg",
-    "/images/wy.jpg",
-    "/images/vx.jpg",
-    "/images/tv.jpg",
-    "/images/z.jpg",
-    "/images/y.jpg",
-    "/images/op.jpg",
-    "/images/ab.jpg",
-
+    { src: "/images/music.jpg", height: 2 }, // Tall
+    { src: "/images/pja.jpg", height: 1 }, // Regular
+    { src: "/images/choir.jpg", height: 1 }, // Regular
+    { src: "/images/one.jpg", height: 3 }, // Extra tall
+    { src: "/images/two.jpg", height: 1 }, // Regular
+    { src: "/images/three.jpg", height: 1 }, // Regular
+    { src: "/images/four.jpg", height: 2 }, // Tall
+    { src: "/images/five.jpg", height: 1 }, // Regular
   ],
-  Pastor: ["/images/pja.jpg", "/images/music.jpg"],
-  Choir: ["/images/choir.jpg", "/images/xw.jpg",],
-  Minister: ["/images/music.jpg", "/images/music.jpg"],
+  Pastor: [
+    { src: "/images/pja.jpg", height: 2 }, // Tall
+    { src: "/images/music.jpg", height: 1 }, // Regular
+  ],
+  Choir: [
+    { src: "/images/choir.jpg", height: 1 }, // Regular
+    { src: "/images/music.jpg", height: 3 }, // Extra tall
+  ],
   Media: [
-    "/images/one.jpg",
-    "/images/two.jpg",
-    "/images/three.jpg",
-    "/images/four.jpg",
-    "/images/five.jpg",
+    { src: "/images/one.jpg", height: 2 }, // Tall
+    { src: "/images/two.jpg", height: 1 }, // Regular
+    { src: "/images/three.jpg", height: 1 }, // Regular
   ],
-  Usher: [
-    "/images/code.jpeg",
-    "/images/coder.jpeg",
-    "/images/download.jpeg",
-    "/images/cop.jpeg",
-  ],
-  Youth: ["/images/sophie.jpg", "/images/bayo.jpg", "/images/kemi.jpg"],
-  Children: ["/images/e.jpg","/images/f.jpg",],
 };
 
 const Gallery = () => {
   const [category, setCategory] = useState("All");
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const displayedImages =
-    category === "All" ? Object.values(images).flat() : images[category];
+    category === "All"
+      ? Object.values(images).flat()
+      : images[category as keyof typeof images];
 
   const categories = Object.keys(images);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-   
-    
-       
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-          {displayedImages.length > 0 ? (
-            displayedImages.map((image, index) => (
-              <div
-                key={index}
-                className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <img
-                  src={image}
-                  alt={`Gallery ${category}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-600 col-span-full">
-              No images available in this category.
-            </p>
-          )}
-       
+      <div className="container mx-auto px-4 py-6">
+
+        <div
+          className="grid gap-4"
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gridAutoRows: "150px",
+            gridAutoFlow: "dense",
+          }}
+        >
+          {displayedImages.map((image, index) => (
+            <div
+              key={index}
+              className={`relative overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300`}
+              style={{
+                gridRow: `span ${image.height}`, 
+              }}
+              onClick={() => setSelectedImage(image.src)}
+            >
+              <img
+                src={image.src}
+                alt={`Gallery ${category}`}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      
       <div className="fixed bottom-0 left-0 w-full bg-white border-t-4 border-blue-500 shadow-md">
         <div className="flex justify-center space-x-4 py-3">
           {categories.map((cat) => (
@@ -132,6 +87,31 @@ const Gallery = () => {
           ))}
         </div>
       </div>
+
+      {/* Modal for Enlarged Image */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-700"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative w-11/12 md:w-3/4 lg:w-1/2 max-h-screen"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Enlarged view"
+              className="w-full h-auto object-contain rounded-lg shadow-xl"
+            />
+            <button
+              className="absolute top-2 right-2 text-white text-3xl font-bold cursor-pointer hover:scale-110 transition-transform duration-300"
+              onClick={() => setSelectedImage(null)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
